@@ -23,6 +23,7 @@
     <string name="takegallery">Выбрать фото</string>
     <string name="takephoto">Сделать снимок</string>
     <string name="emptyImageview">Невозможно найти изображение!</string>
+    <string name="possible_mistakes">ВНИМАНИЕ\nПриложение находится в раннем доступе.\nПроносим свои извинения за возможные неполадки</string>
     <string name="loading_text_0">Гадаем на картах</string>
     <string name="loading_text_1">Бросаем кости</string>
     <string name="loading_text_2">Спрашиваем у гадалки</string>

@@ -77,9 +77,6 @@ public class MainActivity extends AppCompatActivity {
         HISTORYVARIANT = new ArrayList();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        FragmentManager mFragmentManager;
-        //FragmentTransaction mFragmentTransaction;
-        mFragmentManager = getFragmentManager();
         FRAGMENTTRANSITION =getSupportFragmentManager().beginTransaction();
         FragmentAsk blueFragment = new FragmentAsk();
         FRAGMENTTRANSITION

@@ -25,19 +25,13 @@ public class FragmentSetting extends Fragment implements View.OnClickListener {
         ImageView imageViewInst = fragment.findViewById(R.id.imageViewInstagramSetting);
         imageViewInst.setOnClickListener(this);
 
-        final Animation[] anim = {AnimationUtils.loadAnimation(getContext(), R.anim.gear_setting_anim)};
-        final ImageView imageViewGear = fragment.findViewById(R.id.imageView_gear_setting);
-        imageViewGear.startAnimation(anim[0]);
-        /*imageViewGear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                anim[0] = AnimationUtils.loadAnimation(getContext(), R.anim.gear_setting_top_spead);
-                imageViewGear.startAnimation(anim[0]);
-            }
-        });*/
+        final Animation anim = AnimationUtils.loadAnimation(getContext(), R.anim.gear_setting_anim);
+        ImageView imageViewGear = fragment.findViewById(R.id.imageView_gear_setting);
+        imageViewGear.startAnimation(anim);
         Toolbar toolbar = fragment.findViewById(R.id.toolbarSetting);
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.backspace);
+        toolbar.setTitle(R.string.setting_setting);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

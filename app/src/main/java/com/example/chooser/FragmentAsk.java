@@ -79,6 +79,12 @@ public class FragmentAsk extends Fragment {
         final LinearLayoutManager llm = new LinearLayoutManager(fragment.getContext());
         rv.setLayoutManager(llm);
 
+        FRAGMENTTRANSITION = getFragmentManager().beginTransaction();
+        FRAGMENTTRANSITION
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
+                .addToBackStack(null);
+
         HeadlineEditText = fragment.findViewById(R.id.editTextHedalineVariant);
         HeadlineEditText.addTextChangedListener(new TextWatcher() {
             @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
@@ -92,14 +98,11 @@ public class FragmentAsk extends Fragment {
                 if(adapter.getItemCount()>0) {
                     if (!HeadlineEditText.getText().toString().equals("")){
                         butonckick = true;
-                        FRAGMENTTRANSITION = getFragmentManager().beginTransaction();
-                        FragmentLoading blueFragment = new FragmentLoading();
                         FRAGMENTTRANSITION
-                                .replace(R.id.container, blueFragment)
-                                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
-                                .addToBackStack(null)
+                                .replace(R.id.container, new FragmentLoading())
                                 .commit();
+                        onDestroy();
+                        //getActivity().getSupportFragmentManager().popBackStack();
                         if (fragment != null) {
                             InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
@@ -124,17 +127,6 @@ public class FragmentAsk extends Fragment {
                 AddAdapter();
             }
         });
-        if(HISTORYVARIANT != null || HISTORYVARIANT.size() != 0) {
-            for (int i = 0; i < HISTORYVARIANT.size(); i++) {
-                if (HISTORYVARIANT.get(i).varChoice != null) {
-                    List<Variant> variant = HISTORYVARIANT.get(i).variant;
-                    HeadlineEditText.setHint(HISTORYVARIANT.get(i).HeadLine);
-                    adapter.AddAllList(variant);
-                    rv.setAdapter(adapter);
-                    setUpItemTouchHelper();
-                }
-            }
-        }
         return fragment;
     }
 
@@ -148,24 +140,19 @@ public class FragmentAsk extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         //FragmentTransaction ft = getFragmentManager().beginTransaction();
-        FRAGMENTTRANSITION = getFragmentManager().beginTransaction();
-        FRAGMENTTRANSITION
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
-                .addToBackStack(null);
         switch (item.getItemId()){
             case R.id.action_settings:
-                FragmentSetting nextFrag= new FragmentSetting();
                 FRAGMENTTRANSITION
-                        .replace(R.id.container, nextFrag)
+                        .replace(R.id.container, new FragmentSetting())
                         .commit();
-                break;
+                onDestroy();
+                return super.onOptionsItemSelected(item);
             case R.id.action_history:
-                FragmentHistory nextsFrag= new FragmentHistory();
                 FRAGMENTTRANSITION
-                        .replace(R.id.container, nextsFrag)
+                        .replace(R.id.container, new FragmentHistory())
                         .commit();
-                break;
+
+                return super.onOptionsItemSelected(item);
             case R.id.action_share:
                 Intent sendIntent = new Intent();
                 sendIntent.setAction(Intent.ACTION_SEND);
@@ -173,7 +160,7 @@ public class FragmentAsk extends Fragment {
                 sendIntent.putExtra(Intent.EXTRA_STREAM, adapter.ReturnVaariant().UriImage);
                 sendIntent.setType("text/plain");
                 startActivity(Intent.createChooser(sendIntent, getString(R.string.Share_title)));
-                break;
+                return super.onOptionsItemSelected(item);
         }
         return super.onOptionsItemSelected(item);
     }
@@ -205,6 +192,22 @@ public class FragmentAsk extends Fragment {
         rv.setAdapter(adapter);
         setUpItemTouchHelper();
         adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if(HISTORYVARIANT != null || HISTORYVARIANT.size() != 0) {
+            for (int i = 0; i < HISTORYVARIANT.size(); i++) {
+                if (HISTORYVARIANT.get(i).varChoice != null) {
+                    List<Variant> variant = HISTORYVARIANT.get(i).variant;
+                    HeadlineEditText.setText(HISTORYVARIANT.get(i).HeadLine);
+                    adapter.AddAllList(variant);
+                    rv.setAdapter(adapter);
+                    setUpItemTouchHelper();
+                }
+            }
+        }
     }
 
     @Override
