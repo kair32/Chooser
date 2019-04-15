@@ -1,0 +1,24 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.chooser.MainActivity">
+    <item
+        android:id="@+id/action_history"
+        android:orderInCategory="2"
+        android:icon="@drawable/history"
+        android:title="@string/setting_history"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_settings"
+        android:icon="@drawable/settings"
+        android:orderInCategory="3"
+        android:title="@string/setting_setting"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_share"
+        android:icon="@drawable/share"
+        android:visible="false"
+        android:orderInCategory="1"
+        android:title="@string/action_share"
+        app:showAsAction="ifRoom" />
+</menu>

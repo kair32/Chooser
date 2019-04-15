@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">Решатор</string>
+    <string name="why_headline_clear">Кажется Вы забыли задать вопрос</string>
+    <string name="setting_setting">Настройки</string>
+    <string name="hint_text">Текст</string>
+    <string name="make_decision">Принять решение</string>
+    <string name="setting_history">История</string>
+    <string name="InputAsk">Введите ваш вопрос</string>
+    <string name="clear_historu_button">удалить историю</string>
+    <string name="text_clear_history">Здесь будет хранится история ваших решений.\n\nНа данный момент она пуста!</string>
+    <string name="You_variant">Решение:</string>
+    <string name="You_question">Ваш вопрос:</string>
+    <string name="Share_text">Приложение Решатор, помогло мне в вопросе: \</string>
+    <string name="Share_text_2">\nПриняв решение: \ </string>
+    <string name="Share_text_3">\nПопробуй сам!\n</string>
+    <string name="Share_title"> Поделиться результатом</string>
+    <string name="History_clear">История удалена</string>
+    <string name="action_share">Поделиться</string>
+    <string name="add_variant">Добавьте варианты</string>
+    <string name="add">Добавьте</string>
+    <string name="variant">вариант</string>
+    <string name="delete">Удалить</string>
+    <string name="takegallery">Выбрать фото</string>
+    <string name="takephoto">Сделать снимок</string>
+    <string name="emptyImageview">Невозможно найти изображение!</string>
+    <string name="loading_text_0">Гадаем на картах</string>
+    <string name="loading_text_1">Бросаем кости</string>
+    <string name="loading_text_2">Спрашиваем у гадалки</string>
+    <string name="loading_text_3">Вычисляем теории вероятностей</string>
+    <string name="loading_text_4">Проверяем гороскоп</string>
+</resources>
