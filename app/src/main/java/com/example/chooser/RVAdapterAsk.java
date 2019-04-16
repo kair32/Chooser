@@ -2,19 +2,10 @@ package com.example.chooser;
 
 import android.animation.Animator;
 import android.app.AlertDialog;
-import android.app.DatePickerDialog;
-import android.app.Dialog;
-import android.content.ContentResolver;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.Camera;
 import android.graphics.Color;
 import android.graphics.Point;
-import android.hardware.camera2.CameraAccessException;
-import android.hardware.camera2.CameraManager;
 import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Environment;
@@ -22,10 +13,8 @@ import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.ScrollingTabContainerView;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,7 +22,6 @@ import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Callback;
@@ -41,17 +29,10 @@ import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URI;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
-import static android.app.Activity.RESULT_OK;
-import static android.content.ContentValues.TAG;
-import static android.support.v4.app.ActivityCompat.postponeEnterTransition;
-import static android.support.v4.app.ActivityCompat.startActivityForResult;
 import static com.example.chooser.GLOBAL.DBHEALPER;
 import static com.example.chooser.GLOBAL.MENUITEMSHARE;
 import static com.example.chooser.GLOBAL.POSITIONLOADIMAGE;
@@ -142,7 +123,7 @@ public class RVAdapterAsk extends RecyclerView.Adapter<RVAdapterAsk.PersonViewHo
             return Uri.fromFile(file);
         }
     }
-
+    private boolean lastAdd = false;
     static List<Variant> variants;
     private FragmentAsk mContext;
     RVAdapterAsk(FragmentAsk  context){
@@ -153,12 +134,14 @@ public class RVAdapterAsk extends RecyclerView.Adapter<RVAdapterAsk.PersonViewHo
     public void AddAllList(List<Variant> variantss){
         variants = new ArrayList<>();
         variants = variantss;
+        lastAdd = true;
         //this.variants = variantss;
         //notifyDataSetChanged();
     }
     public void AddList(Variant variant){
         if (variants == null) variants = new ArrayList<>();
         variants.add(variant);
+        lastAdd = true;
         //notifyItemRangeChanged(0, variants.size()-1);
         //notifyItemInserted(variants.size()-1);
     }
@@ -168,15 +151,12 @@ public class RVAdapterAsk extends RecyclerView.Adapter<RVAdapterAsk.PersonViewHo
         notifyItemRangeChanged(0, variants.size());
         variants.get(position).variant = true;
         DBHEALPER.DB_add(variants, textHeadline);
-        //notifyItemChanged(position);
-        //notifyItemRangeChanged(position, variants.size()-1);
     }
     public void RemoveList(int position){
         MENUITEMSHARE.setVisible(false);
         if (variants != null) {
             variants.remove(position);
             notifyItemRemoved(position);
-            //notifyItemRangeChanged(position, variants.size());если будут баги при удалении то необходимо вернуть
         }
     }
     public Variant ReturnVaariant() {
@@ -198,8 +178,9 @@ public class RVAdapterAsk extends RecyclerView.Adapter<RVAdapterAsk.PersonViewHo
     public PersonViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.card_view_ask_layout, viewGroup, false);
         final PersonViewHolder pvh = new PersonViewHolder(v);
-        if( viewGroup.getChildCount() == variants.size()-1) {
+        if( viewGroup.getChildCount() == variants.size()-1 && lastAdd) {
             pvh.cv.setVisibility(View.INVISIBLE);
+            lastAdd = false;
             Visibles(pvh.cv);
         }
         return pvh;
@@ -209,7 +190,8 @@ public class RVAdapterAsk extends RecyclerView.Adapter<RVAdapterAsk.PersonViewHo
     public void onBindViewHolder(final PersonViewHolder personViewHolder, final int i) {
         personViewHolder.cv.setBackgroundColor(Color.WHITE);
         if(variants.get(personViewHolder.getAdapterPosition()).variant) {
-            personViewHolder.cv.setBackgroundColor(Color.GREEN);
+            //personViewHolder.cv.setBackgroundColor(Color.GREEN);
+            personViewHolder.cv.setBackgroundColor(mContext.getResources().getColor(R.color.colorPrimary));
         }
         personViewHolder.personName.setHint(i+1 + " " +variants.get(i).hint);
         personViewHolder.personName.setText(variants.get(i).text);
@@ -273,7 +255,7 @@ public class RVAdapterAsk extends RecyclerView.Adapter<RVAdapterAsk.PersonViewHo
                     cardView.post(new Runnable() {
                         @Override
                         public void run() {
-                            if (cardView.getVisibility() == View.INVISIBLE) {
+                            if (cardView.getVisibility() == View.INVISIBLE ) {
                                 int cx = Math.abs((cardView.getLeft() - cardView.getRight()) / 2);
                                 int cy = Math.abs((cardView.getTop() - cardView.getBottom()) / 2);
                                 int finalRadius = Math.max(cardView.getWidth(), cardView.getHeight());

@@ -96,7 +96,7 @@ public class FragmentAsk extends Fragment {
             @Override
             public void onClick(View view) {
                 if(adapter.getItemCount()>0) {
-                    if (!HeadlineEditText.getText().toString().equals("")){
+                    //if (!HeadlineEditText.getText().toString().equals("")){
                         butonckick = true;
                         FRAGMENTTRANSITION
                                 .replace(R.id.container, new FragmentLoading())
@@ -107,9 +107,9 @@ public class FragmentAsk extends Fragment {
                             InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
                         }
-                }else {
+                //}else {
                         Toast.makeText(getContext(),getString(R.string.why_headline_clear),Toast.LENGTH_LONG).show();
-                    }
+                 //   }
                 }else Snackbar.make(view, getString(R.string.add_variant), Snackbar.LENGTH_LONG)
                         .setAction(getString(R.string.add), new View.OnClickListener() {
                             @Override
@@ -134,6 +134,10 @@ public class FragmentAsk extends Fragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_main, menu);
         MENUITEMSHARE = menu.findItem(R.id.action_share);
+        if(butonckick) {
+            MENUITEMSHARE.setVisible(true);
+            butonckick = false;
+        }
         super.onCreateOptionsMenu(menu, inflater);
     }
 
@@ -197,6 +201,8 @@ public class FragmentAsk extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+        if(butonckick)
+            adapter.ChooseWiner(HeadlineEditText.getText().toString());
         if(HISTORYVARIANT != null || HISTORYVARIANT.size() != 0) {
             for (int i = 0; i < HISTORYVARIANT.size(); i++) {
                 if (HISTORYVARIANT.get(i).varChoice != null) {
@@ -213,11 +219,6 @@ public class FragmentAsk extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        if(butonckick){
-            MENUITEMSHARE.setVisible(true);
-            adapter.ChooseWiner(HeadlineEditText.getText().toString());
-            butonckick = false;
-        }
         rv.setAdapter(adapter);
         setUpItemTouchHelper();
     }
@@ -225,7 +226,6 @@ public class FragmentAsk extends Fragment {
     @Override
     public void onStop() {
         super.onStop();
-        MENUITEMSHARE.setVisible(true);
         View view = getActivity().getCurrentFocus();
         if (view != null) {
             InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);

@@ -17,6 +17,8 @@ import android.widget.TextView;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import static com.example.chooser.GLOBAL.MENUITEMSHARE;
+
 public class FragmentLoading extends Fragment {
     private Timer mTimer;
     private MyTimerTask mMyTimerTask;
