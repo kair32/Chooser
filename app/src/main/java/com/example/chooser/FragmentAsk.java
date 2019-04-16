@@ -209,6 +209,7 @@ public class FragmentAsk extends Fragment {
                     List<Variant> variant = HISTORYVARIANT.get(i).variant;
                     HeadlineEditText.setText(HISTORYVARIANT.get(i).HeadLine);
                     adapter.AddAllList(variant);
+                    butonckick = true;
                     rv.setAdapter(adapter);
                     setUpItemTouchHelper();
                 }
