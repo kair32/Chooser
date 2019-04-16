@@ -1,26 +1,20 @@
-package com.example.chooser;
+package com.AKS.chooser;
 
-import android.Manifest;
-import android.app.FragmentManager;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import java.util.ArrayList;
 
-import static com.example.chooser.GLOBAL.FRAGMENTTRANSITION;
-import static com.example.chooser.GLOBAL.HISTORYVARIANT;
-import static com.example.chooser.GLOBAL.DBHEALPER;
-import static com.example.chooser.GLOBAL.REQUEST_CODE_PERMISSION_READ_ALL;
-import static com.example.chooser.GLOBAL.REQUEST_CODE_PERMISSION_READ_CAMERA;
-import static com.example.chooser.GLOBAL.REQUEST_CODE_PERMISSION_READ_STORAGE;
+import static com.AKS.chooser.GLOBAL.FRAGMENTTRANSITION;
+import static com.AKS.chooser.GLOBAL.HISTORYVARIANT;
+import static com.AKS.chooser.GLOBAL.DBHEALPER;
+import static com.AKS.chooser.GLOBAL.REQUEST_CODE_PERMISSION_READ_ALL;
+import static com.AKS.chooser.GLOBAL.REQUEST_CODE_PERMISSION_READ_CAMERA;
+import static com.AKS.chooser.GLOBAL.REQUEST_CODE_PERMISSION_READ_STORAGE;
 
 public class MainActivity extends AppCompatActivity {
     @Override

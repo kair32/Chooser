@@ -1,23 +1,17 @@
-package com.example.chooser;
+package com.AKS.chooser;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.util.Base64;
-import android.util.Log;
 
-import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
-import static com.example.chooser.GLOBAL.HISTORYVARIANT;
-import static com.example.chooser.GLOBAL.DBHEALPER;
+import static com.AKS.chooser.GLOBAL.HISTORYVARIANT;
+import static com.AKS.chooser.GLOBAL.DBHEALPER;
 
 class DBHelper extends SQLiteOpenHelper {
 

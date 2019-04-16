@@ -1,4 +1,4 @@
-package com.example.chooser;
+package com.AKS.chooser;
 
 import android.database.Cursor;
 import android.media.ExifInterface;
@@ -19,8 +19,8 @@ import com.squareup.picasso.Picasso;
 import java.io.IOException;
 import java.util.List;
 
-import static com.example.chooser.GLOBAL.DBHEALPER;
-import static com.example.chooser.GLOBAL.HISTORYVARIANT;
+import static com.AKS.chooser.GLOBAL.DBHEALPER;
+import static com.AKS.chooser.GLOBAL.HISTORYVARIANT;
 
 public class RVAdapterHstory extends RecyclerView.Adapter<RVAdapterHstory.QuestionViewHolder> {
 

@@ -1,9 +1,7 @@
-package com.example.chooser;
+package com.AKS.chooser;
 
-import android.graphics.Bitmap;
 import android.net.Uri;
 
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 

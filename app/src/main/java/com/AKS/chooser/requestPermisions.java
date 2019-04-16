@@ -1,4 +1,4 @@
-package com.example.chooser;
+package com.AKS.chooser;
 
 import android.Manifest;
 import android.app.Activity;
@@ -8,9 +8,9 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
-import static com.example.chooser.GLOBAL.REQUEST_CODE_PERMISSION_READ_ALL;
-import static com.example.chooser.GLOBAL.REQUEST_CODE_PERMISSION_READ_CAMERA;
-import static com.example.chooser.GLOBAL.REQUEST_CODE_PERMISSION_READ_STORAGE;
+import static com.AKS.chooser.GLOBAL.REQUEST_CODE_PERMISSION_READ_ALL;
+import static com.AKS.chooser.GLOBAL.REQUEST_CODE_PERMISSION_READ_CAMERA;
+import static com.AKS.chooser.GLOBAL.REQUEST_CODE_PERMISSION_READ_STORAGE;
 
 public class requestPermisions {
     private Context mcontext;

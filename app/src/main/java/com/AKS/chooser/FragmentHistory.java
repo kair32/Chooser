@@ -1,6 +1,5 @@
-package com.example.chooser;
+package com.AKS.chooser;
 
-import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -9,7 +8,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -18,18 +16,14 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.List;
-
-import static com.example.chooser.GLOBAL.HISTORYVARIANT;
-import static com.example.chooser.GLOBAL.DBHEALPER;
+import static com.AKS.chooser.GLOBAL.HISTORYVARIANT;
+import static com.AKS.chooser.GLOBAL.DBHEALPER;
 
 public class FragmentHistory extends Fragment {
     private RecyclerView rv;

@@ -1,4 +1,4 @@
-package com.example.chooser;
+package com.AKS.chooser;
 
 import android.animation.Animator;
 import android.app.AlertDialog;
@@ -33,9 +33,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import static com.example.chooser.GLOBAL.DBHEALPER;
-import static com.example.chooser.GLOBAL.MENUITEMSHARE;
-import static com.example.chooser.GLOBAL.POSITIONLOADIMAGE;
+import static com.AKS.chooser.GLOBAL.DBHEALPER;
+import static com.AKS.chooser.GLOBAL.MENUITEMSHARE;
+import static com.AKS.chooser.GLOBAL.POSITIONLOADIMAGE;
 
 public class RVAdapterAsk extends RecyclerView.Adapter<RVAdapterAsk.PersonViewHolder> {
 

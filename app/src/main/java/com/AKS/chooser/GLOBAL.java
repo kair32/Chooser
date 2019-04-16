@@ -1,4 +1,4 @@
-package com.example.chooser;
+package com.AKS.chooser;
 
 import android.support.v4.app.FragmentTransaction;
 import android.view.MenuItem;

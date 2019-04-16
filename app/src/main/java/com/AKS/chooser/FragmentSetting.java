@@ -1,4 +1,4 @@
-package com.example.chooser;
+package com.AKS.chooser;
 
 import android.content.Intent;
 import android.net.Uri;
