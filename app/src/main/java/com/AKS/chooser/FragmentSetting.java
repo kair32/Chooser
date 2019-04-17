@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.ImageView;
 
 public class FragmentSetting extends Fragment implements View.OnClickListener {
@@ -24,6 +25,8 @@ public class FragmentSetting extends Fragment implements View.OnClickListener {
         imageViewVK.setOnClickListener(this);
         ImageView imageViewInst = fragment.findViewById(R.id.imageViewInstagramSetting);
         imageViewInst.setOnClickListener(this);
+        Button b = fragment.findViewById(R.id.buttonRateAppSetting);
+        b.setOnClickListener(this);
 
         final Animation anim = AnimationUtils.loadAnimation(getContext(), R.anim.gear_setting_anim);
         ImageView imageViewGear = fragment.findViewById(R.id.imageView_gear_setting);

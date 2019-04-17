@@ -20,6 +20,8 @@
     <string name="add">Добавьте</string>
     <string name="variant">вариант</string>
     <string name="delete">Удалить</string>
+    <string name="rate_app">Оцените наше приложение</string>
+    <string name="contact_developer">Связаться с разработчиком</string>
     <string name="takegallery">Выбрать фото</string>
     <string name="takephoto">Сделать снимок</string>
     <string name="emptyImageview">Невозможно найти изображение!</string>

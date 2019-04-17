@@ -170,6 +170,7 @@ public class FragmentAsk extends Fragment {
                 return;
             case CAMERA_REQUEST:
                 if(resultCode == RESULT_OK) {
+                    adapter.takePikture = true;
                     rv.setAdapter(adapter);
                     setUpItemTouchHelper();
                 }
@@ -178,7 +179,6 @@ public class FragmentAsk extends Fragment {
     }
 
     private void AddAdapter(){
-        //adapter.setItems(new Variant(getString(R.string.variant), false));
         adapter.AddList(new Variant(getString(R.string.variant), false));
         rv.setAdapter(adapter);
         setUpItemTouchHelper();

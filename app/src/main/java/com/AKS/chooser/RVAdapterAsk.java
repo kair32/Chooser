@@ -15,6 +15,7 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -53,6 +54,32 @@ public class RVAdapterAsk extends RecyclerView.Adapter<RVAdapterAsk.PersonViewHo
             personName = itemView.findViewById(R.id.editTextVariantAsk);
             clearImage = itemView.findViewById(R.id.imageView_attachAsk_button);
             ImageViewAttach = itemView.findViewById(R.id.imageView_attach_ask);
+            ImageViewAttach.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AlertDialog.Builder adb = new AlertDialog.Builder(mContext.getActivity());
+                    LayoutInflater inflater = mContext.getLayoutInflater();
+                    View dialogView = inflater.inflate(R.layout.dialog_imageview, null);
+                    adb.setView(dialogView);
+                    final AlertDialog alert = adb.create();
+                    alert.show();
+                    ImageView imageView = dialogView.findViewById(R.id.dialog_imageView);
+                    imageView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            alert.dismiss();
+                        }
+                    });
+                    Display display = mContext.getActivity().getWindowManager().getDefaultDisplay();
+                    Point size = new Point();
+                    display.getSize(size);
+                    Picasso.get().load(variants.get(getAdapterPosition()).UriImage)
+                            .rotate(getOrientation(variants.get(getAdapterPosition()).UriImage))
+                            .resize(size.x,size.y)
+                            .centerInside()
+                            .into(imageView);
+                }
+            });
             EmptyTextView = itemView.findViewById(R.id.empty_textView_Ask);
             personName.addTextChangedListener(new TextWatcher(){
                 @Override public void afterTextChanged(Editable s) {}
@@ -123,6 +150,7 @@ public class RVAdapterAsk extends RecyclerView.Adapter<RVAdapterAsk.PersonViewHo
             return Uri.fromFile(file);
         }
     }
+    public boolean takePikture = false;
     private boolean lastAdd = false;
     static List<Variant> variants;
     private FragmentAsk mContext;
@@ -135,15 +163,11 @@ public class RVAdapterAsk extends RecyclerView.Adapter<RVAdapterAsk.PersonViewHo
         variants = new ArrayList<>();
         variants = variantss;
         lastAdd = true;
-        //this.variants = variantss;
-        //notifyDataSetChanged();
     }
     public void AddList(Variant variant){
         if (variants == null) variants = new ArrayList<>();
         variants.add(variant);
         lastAdd = true;
-        //notifyItemRangeChanged(0, variants.size()-1);
-        //notifyItemInserted(variants.size()-1);
     }
     public void ChooseWiner(String textHeadline){
         int position = new Random().nextInt(variants.size());
@@ -202,7 +226,7 @@ public class RVAdapterAsk extends RecyclerView.Adapter<RVAdapterAsk.PersonViewHo
             int width = size.x;
                 Picasso.get().load(variants.get(i).UriImage)
                         .rotate(getOrientation(variants.get(i).UriImage))
-                        .resize(width, width)
+                        .resize(240, 240)
                         .centerInside()
                         .into(personViewHolder.ImageViewAttach, new Callback() {
                             @Override public void onSuccess() {
@@ -214,6 +238,7 @@ public class RVAdapterAsk extends RecyclerView.Adapter<RVAdapterAsk.PersonViewHo
         }
     }
     private int getOrientation(Uri path){//узнаем ориентацию изображения для ее дальнейшего переворота
+        //if (takePikture){takePikture = false; return 0;}//не надо переворачивать фотку, если она сделана из приложения)
         ExifInterface exif;
         int orientation = 0;
         try {

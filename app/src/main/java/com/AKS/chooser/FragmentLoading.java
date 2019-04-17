@@ -34,9 +34,9 @@ public class FragmentLoading extends Fragment {
         MyTimerTaskTwo = new MyTimerTaskTwo();
         mTimer.schedule(mMyTimerTask, 0,timer);
         mTimer.schedule(MyTimerTaskTwo, 0,timer/3);
-        final Animation[] anim = {AnimationUtils.loadAnimation(getContext(), R.anim.gear_loading_anim)};
+        final Animation anim = AnimationUtils.loadAnimation(getContext(), R.anim.gear_loading_anim);
         final ImageView imageViewGear = fragment.findViewById(R.id.loading_imageView);
-        imageViewGear.startAnimation(anim[0]);
+        imageViewGear.startAnimation(anim);
         return fragment;
     }
     class MyTimerTaskTwo extends TimerTask {
@@ -88,7 +88,6 @@ public class FragmentLoading extends Fragment {
         mTimer.cancel();
         super.onDestroyView();
     }
-
     private void setTextPost(final String text) {
         Handler handler = new Handler(getContext().getMainLooper());
         handler.post(new Runnable() {
